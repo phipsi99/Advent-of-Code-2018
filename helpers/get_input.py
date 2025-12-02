@@ -8,7 +8,7 @@ def get_lines(day, debug_mode = False):
     if not lines:
         lines = [line.rstrip() for line in get_input(day).splitlines()]
         with open(Path(f'{day}/input.txt'), 'w') as file:
-            file.writelines(lines)
+            file.writelines([line + '\n' for line in lines])
     if debug_mode:
         with open(Path(f'{day}/test.txt')) as file:
             lines = [line.rstrip() for line in file]
@@ -18,7 +18,7 @@ def get_lines(day, debug_mode = False):
 def get_input(day):
     day = int(day)
     session_token = os.getenv('AOC_SESSION_TOKEN')
-    url = f'https://adventofcode.com/2025/day/{day}/input'
+    url = f'https://adventofcode.com/2018/day/{day}/input'
     headers = {'Cookie': f'session={session_token}'}
     r = requests.get(url, headers=headers, verify=False)
 
